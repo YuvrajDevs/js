@@ -38,3 +38,10 @@ npm run discover -- https://some-startup-directory/japan     # or a text file of
 npm run scan        # probes /careers, /jobs, /recruit, 採用 links and ATS embeds (HERP, HRMOS, Wantedly, Lever...)
 ```
 Each company's careers page is hashed; unchanged pages cost nothing on later scans, new postings get translated, filtered (remote-from-India or visa+relocation, no local language) and ranked. Good directory seeds: accelerator portfolios (YC, Antler Japan, etc.), "Japan startup" lists, Product Hunt/Wantedly company lists, X posts like "we're hiring" with a link.
+
+## Web hub (local)
+```
+npm run web:install && npm run web      # http://localhost:3000
+```
+Jobs (filter, score, tags), job drawer (tailor resume, copy / save as PDF, cover note, prefill application, set status), Tracker (tailored → applied → interview → offer), Insights (skill demand across your best matches, gaps, project ideas), Profile (edit `profile.yml`). Shows demo data until the first scan. Put `ANTHROPIC_API_KEY=...` in `web/.env.local`.
+Prefill opens a real browser window on your machine, so run the hub locally rather than deploying it.

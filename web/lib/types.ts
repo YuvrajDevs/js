@@ -1,0 +1,2 @@
+export type Status = "new" | "ranked" | "tailored" | "applied" | "interview" | "offer" | "rejected" | "skipped";
+export interface Job { id: string; source: string; company: string; title: string; location: string; url: string; description: string; postedAt?: string; country?: string; lang?: string; remoteFromIndia?: boolean | null; visa?: boolean | null; relocation?: boolean | null; langRequired?: string; salaryInrMonthly?: number | null; score?: number; reason?: string; status: Status }
