@@ -25,3 +25,8 @@ npm run tailor -- gh:anthropic:12345
 3. Daily cron + digest (Telegram/email) of top 5 jobs.
 4. More sources: YC Work at a Startup, Wellfound, X/Twitter "hiring" posts, company career pages via sitemap.
 5. Application tracker + follow-up reminders.
+
+## International mode
+Set `international` in `profile.yml`. Non-English postings (Japanese etc.) are translated to English, and Claude extracts required language, visa sponsorship, relocation support and salary (converted to INR/month). **Any role requiring the local language is dropped.** `list` shows country, ₹/month, VISA and RELO tags.
+Visa reality check: Japan's work visa generally needs a bachelor's degree or ~10 years' experience; Germany's Blue Card needs a degree and a salary threshold. Check eligibility before investing in an application.
+Sources are UNVERIFIED from the build sandbox (outbound web was blocked); test each URL on your machine.

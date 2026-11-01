@@ -1,6 +1,6 @@
 import { load, save } from "./store.js"; import { profile } from "./profile.js";
 import * as ats from "./sources/ats.js"; import * as com from "./sources/community.js";
-import { prefilter, scoreJob } from "./rank.js"; import { tailor } from "./tailor.js"; import { prefill } from "./apply.js";
+import { prefilter, scoreJob } from "./rank.js"; import * as intl from "./sources/intl.js"; import { normalizeIntl, languageOk, isForeignText } from "./intl.js"; import { tailor } from "./tailor.js"; import { prefill } from "./apply.js";
 const [cmd, arg] = process.argv.slice(2);
 const jobs = load();
 const safe = async (n: string, f: () => Promise<any[]>) => { try { const r = await f(); console.log(`${n}: ${r.length}`); return r; } catch (e: any) { console.warn(`${n} failed: ${e.message}`); return []; } };
@@ -12,8 +12,20 @@ if (cmd === "scan") {
       ...(p.companies.lever ?? []).map((s: string) => safe(`lever/${s}`, () => ats.lever(s))),
       ...(p.companies.ashby ?? []).map((s: string) => safe(`ashby/${s}`, () => ats.ashby(s))),
       safe("hn", com.hnWhoIsHiring), safe("remoteok", com.remoteok),
+      ...(p.international?.use_arbeitnow ? [safe("arbeitnow", intl.arbeitnow)] : []),
+      ...(p.international?.boards ?? []).map((u: string) => safe(`page/${u}`, () => intl.pageReader(u))),
     ])).flat() ];
-  let n = 0; for (const j of all) if (!jobs[j.id] && prefilter(j, p)) { jobs[j.id] = j; n++; }
+  let n = 0, drop = 0;
+  for (let j of all) {
+    if (jobs[j.id]) continue;
+    const isIntl = j.country || j.source.includes(".") || j.source === "arbeitnow";
+    if (isIntl || isForeignText(j.title + j.description)) { // translate + extract language/visa/salary
+      try { j = await normalizeIntl(j); } catch (e: any) { console.warn("normalize failed", j.id); continue; }
+      if (!languageOk(j)) { drop++; continue; } // needs local language -> skip
+    }
+    if (prefilter(j, p)) { jobs[j.id] = j; n++; }
+  }
+  console.log(`${drop} dropped (local language required)`);
   save(jobs); console.log(`${n} new relevant jobs`);
 } else if (cmd === "rank") {
   for (const j of Object.values(jobs).filter(j => j.status === "new")) {
@@ -21,7 +33,7 @@ if (cmd === "scan") {
   } save(jobs);
 } else if (cmd === "list") {
   Object.values(jobs).filter(j => j.score != null).sort((a, b) => b.score! - a.score!).slice(0, 30)
-    .forEach(j => console.log(`${j.score}\t${j.id}\t${j.company} | ${j.title}\n\t${j.reason}\n\t${j.url}`));
+    .forEach(j => console.log(`${j.score}\t${j.id}\t${j.company} | ${j.title}${j.country ? " [" + j.country + "]" : ""}${j.salaryInrMonthly ? " ~₹" + Math.round(j.salaryInrMonthly / 1000) + "k/mo" : ""}${j.visa ? " VISA" : ""}${j.relocation ? " RELO" : ""}\n\t${j.reason}\n\t${j.url}`));
 } else if (cmd === "tailor" && arg) {
   const j = jobs[arg]; if (!j) throw new Error("unknown id"); await tailor(j); j.status = "tailored"; save(jobs); console.log(`written to out/`);
 } else if (cmd === "apply" && arg) {

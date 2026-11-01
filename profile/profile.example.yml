@@ -28,3 +28,10 @@ companies:   # ATS boards to scan (slug from the careers URL)
   greenhouse: [anthropic, vercel]
   lever: []
   ashby: [openai, replit]
+international:
+  # Countries paying more. Roles needing the local language are dropped automatically.
+  countries: [Japan, Germany, Netherlands, Singapore, UAE, Remote]
+  use_arbeitnow: true
+  boards:           # listing pages; any language, translated automatically (verify each URL opens)
+    - https://japan-dev.com/jobs
+    - https://tokyodev.com/jobs
