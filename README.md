@@ -28,5 +28,6 @@ npm run tailor -- gh:anthropic:12345
 
 ## International mode
 Set `international` in `profile.yml`. Non-English postings (Japanese etc.) are translated to English, and Claude extracts required language, visa sponsorship, relocation support and salary (converted to INR/month). **Any role requiring the local language is dropped.** `list` shows country, ₹/month, VISA and RELO tags.
-Visa reality check: Japan's work visa generally needs a bachelor's degree or ~10 years' experience; Germany's Blue Card needs a degree and a salary threshold. Check eligibility before investing in an application.
+Arrangement rule: overseas jobs are kept only if remote AND open to India-based workers (tag REMOTE-IN), or if they offer BOTH visa sponsorship and relocation support. On-site-only roles without both are dropped.
+Visa reality check (only matters for the relocation route; remote-from-India needs no visa): Japan's work visa generally needs a bachelor's degree or ~10 years' experience; Germany's Blue Card needs a degree and a salary threshold. Check eligibility before investing in an application.
 Sources are UNVERIFIED from the build sandbox (outbound web was blocked); test each URL on your machine.
