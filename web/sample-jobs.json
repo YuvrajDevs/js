@@ -14,7 +14,38 @@
   "reason": "Builder role, English-only, remote from India, strong pay.",
   "status": "ranked",
   "competition": "low",
-  "postedAt": "2026-10-31T00:00:00Z"
+  "postedAt": "2026-10-31T00:00:00Z",
+  "req": {
+   "must": [
+    "typescript",
+    "next.js",
+    "postgres"
+   ],
+   "nice": [
+    "claude api"
+   ],
+   "tech": [
+    "typescript",
+    "next.js",
+    "postgres",
+    "claude api"
+   ],
+   "ai": [
+    "claude api",
+    "tool use",
+    "prompt engineering"
+   ],
+   "responsibilities": [
+    "ship features end-to-end",
+    "own product areas"
+   ],
+   "signals": [
+    "ownership",
+    "0 to 1",
+    "fast iteration"
+   ],
+   "seniority": "junior"
+  }
  },
  {
   "id": "demo:2",
@@ -31,7 +62,34 @@
   "score": 84,
   "reason": "AI agent work, visa and relocation covered, high pay.",
   "status": "ranked",
-  "competition": "medium"
+  "competition": "medium",
+  "req": {
+   "must": [
+    "python",
+    "llm agents"
+   ],
+   "nice": [
+    "typescript"
+   ],
+   "tech": [
+    "python",
+    "typescript"
+   ],
+   "ai": [
+    "agents",
+    "rag",
+    "evals",
+    "tool use"
+   ],
+   "responsibilities": [
+    "build agents",
+    "write evals"
+   ],
+   "signals": [
+    "english-speaking team"
+   ],
+   "seniority": "mid"
+  }
  },
  {
   "id": "demo:3",
@@ -48,7 +106,38 @@
   "reason": "Matches ship-fast AI builder profile; pay above 1L target.",
   "status": "tailored",
   "competition": "low",
-  "postedAt": "2026-10-29T00:00:00Z"
+  "postedAt": "2026-10-29T00:00:00Z",
+  "req": {
+   "must": [
+    "react",
+    "node"
+   ],
+   "nice": [
+    "stripe"
+   ],
+   "tech": [
+    "react",
+    "node",
+    "supabase",
+    "stripe",
+    "cursor"
+   ],
+   "ai": [
+    "claude api",
+    "prompt engineering"
+   ],
+   "responsibilities": [
+    "ship weekly",
+    "talk to users",
+    "prototype fast"
+   ],
+   "signals": [
+    "ownership",
+    "startup",
+    "end-to-end"
+   ],
+   "seniority": "junior"
+  }
  },
  {
   "id": "demo:4",
@@ -64,6 +153,28 @@
   "score": 58,
   "reason": "Solid pay but less AI focus and visa only after probation.",
   "status": "ranked",
-  "competition": "high"
+  "competition": "high",
+  "req": {
+   "must": [
+    "react",
+    "node",
+    "aws"
+   ],
+   "nice": [
+    "graphql"
+   ],
+   "tech": [
+    "react",
+    "node",
+    "aws",
+    "graphql"
+   ],
+   "ai": [],
+   "responsibilities": [
+    "build full-stack features"
+   ],
+   "signals": [],
+   "seniority": "mid"
+  }
  }
 ]

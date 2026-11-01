@@ -28,3 +28,8 @@ input,select,textarea{font:inherit;color:var(--ink);background:var(--card);borde
 textarea.yaml{width:100%;min-height:60vh;font-family:ui-monospace,monospace;font-size:13px;margin-top:10px}
 @media(max-width:760px){.shell{grid-template-columns:1fr}.nav{position:static;height:auto;flex-direction:row;overflow:auto;border-right:0;border-bottom:1px solid var(--line);padding:12px}.brand{margin:0 8px 0 0}.job{grid-template-columns:40px 1fr}.job>:last-child{display:none}}
 @media print{.nav,.noprint,.job,.list{display:none!important}.drawer{position:static;width:100%;box-shadow:none;border:0;padding:0}.resume{border:0;padding:0}.shell{display:block}}
+.kw{display:grid;grid-template-columns:22px 220px 1fr 90px;gap:10px;align-items:center;padding:5px 0;font-size:14.5px}.kw i{display:block;height:8px;border-radius:99px;background:var(--acc)}.kw input{accent-color:var(--acc)}
+button.link{border:0;background:none;padding:0;text-align:left;color:var(--ink);font-weight:500}button.link:hover{color:var(--acc)}
+.kwd{margin:2px 0 8px 32px;padding:10px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px;font-size:13.5px;color:var(--mute)}.kwd p{margin:0 0 6px}.kwd a{text-decoration:none}
+.pickbar{position:sticky;bottom:16px;margin-top:14px;display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--acc);border-radius:var(--r);padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.1)}
+@media(max-width:760px){.kw{grid-template-columns:22px 1fr 60px}.kw>div{display:none}}
