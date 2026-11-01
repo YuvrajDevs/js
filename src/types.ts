@@ -1,0 +1,1 @@
+export interface Job { id: string; source: string; company: string; title: string; location: string; url: string; description: string; postedAt?: string; score?: number; reason?: string; status: "new" | "ranked" | "tailored" | "applied" | "skipped"; }

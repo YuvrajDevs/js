@@ -1,0 +1,30 @@
+# Copy to profile/profile.yml and fill in. This is the ONLY source of truth the
+# tailoring step may use: it can reorder/reword, never invent.
+name: Your Name
+email: you@example.com
+phone: "+91-XXXXXXXXXX"
+links: { github: "", portfolio: "", linkedin: "" }
+location: India
+summary: >
+  Builder who ships full products fast using AI-assisted development.
+experience:
+  - company: Current Co
+    title: Software Engineer
+    dates: "2024-2026"
+    bullets:
+      - "Shipped X that did Y (metric)"
+projects:
+  - name: Project
+    url: ""
+    bullets: ["What it does, stack, outcome/metric"]
+skills: [TypeScript, React, Node, Claude API, Next.js, Postgres]
+targets:
+  titles: [founding engineer, ai engineer, product engineer, full stack engineer, forward deployed engineer, vibe coder, ai builder]
+  must_signals: [ai, llm, claude, ship, startup, 0 to 1, end-to-end, ownership]
+  avoid: [10+ years, staff, principal, unpaid, intern]
+  min_ctc_lpa: 12   # 1L/month
+  remote_ok: true
+companies:   # ATS boards to scan (slug from the careers URL)
+  greenhouse: [anthropic, vercel]
+  lever: []
+  ashby: [openai, replit]

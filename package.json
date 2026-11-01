@@ -1,0 +1,24 @@
+{
+  "name": "js-jobseek",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scan": "tsx src/cli.ts scan",
+    "rank": "tsx src/cli.ts rank",
+    "list": "tsx src/cli.ts list",
+    "tailor": "tsx src/cli.ts tailor",
+    "apply": "tsx src/cli.ts apply",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.0",
+    "playwright": "^1.50.0",
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
