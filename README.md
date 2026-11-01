@@ -45,3 +45,8 @@ npm run web:install && npm run web      # http://localhost:3000
 ```
 Jobs (filter, score, tags), job drawer (tailor resume, copy / save as PDF, cover note, prefill application, set status), Tracker (tailored → applied → interview → offer), Insights (skill demand across your best matches, gaps, project ideas), Profile (edit `profile.yml`). Shows demo data until the first scan. Put `ANTHROPIC_API_KEY=...` in `web/.env.local`.
 Prefill opens a real browser window on your machine, so run the hub locally rather than deploying it.
+
+## Sources and priority
+All sources live in `sources.json` (editable) plus your own via the hub's Sources page (`data/custom-sources.json`: any RSS feed or listing page). Each has a competition tier: low (HN, Reddit, niche boards, small-company career pages), medium, high (big boards, famous companies). `npm run sources` lists them; the hub shows fetch counts and errors per source after each scan.
+Priority = fit score + remote-from-India (+15) or visa+relocation (+5) + low competition (+10) / high (-8) + freshness (<3 days +8, >45 days -8). Remote always outranks visa. `src/priority.ts` and `web/lib/priority.ts` must stay identical.
+Seeds for `npm run discover` (lists of remote-first companies with career pages): the remoteintech/remote-jobs and lukasz-madon/awesome-remote-job GitHub lists.

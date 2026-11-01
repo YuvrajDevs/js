@@ -1,5 +1,5 @@
 "use client"; import { useEffect, useState } from "react"; import type { Job } from "@/lib/types"; import { md } from "@/lib/md";
-export const tagsOf = (j: Job) => [j.remoteFromIndia && "Remote-IN", j.visa && "Visa", j.relocation && "Relocation", j.country && j.country, j.salaryInrMonthly && `~₹${Math.round(j.salaryInrMonthly / 1000)}k/mo`].filter(Boolean) as string[];
+export const tagsOf = (j: Job) => [j.remoteFromIndia && "Remote-IN", j.competition === "low" && "Low competition", j.visa && "Visa", j.relocation && "Relocation", j.country && j.country, j.salaryInrMonthly && `~₹${Math.round(j.salaryInrMonthly / 1000)}k/mo`].filter(Boolean) as string[];
 const STATUSES = ["ranked", "tailored", "applied", "interview", "offer", "rejected", "skipped"];
 export default function JobDrawer({ job, onClose, onChange, demo }: { job: Job; onClose: () => void; onChange: () => void; demo: boolean }) {
   const [resume, setResume] = useState<string | null>(null); const [busy, setBusy] = useState(""); const [err, setErr] = useState("");

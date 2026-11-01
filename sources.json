@@ -1,0 +1,16 @@
+[
+ {"id":"hn-who","name":"HN: Who is hiring (monthly)","kind":"hnWho","competition":"low","remote":false,"note":"Founders post directly; many remote/global roles"},
+ {"id":"hn-jobs","name":"HN Jobs (YC companies)","kind":"hnJobs","competition":"low","remote":false,"note":"Official HN API, YC startups"},
+ {"id":"reddit-forhire","name":"Reddit r/forhire [HIRING]","kind":"reddit","url":"https://www.reddit.com/r/forhire/new.json?limit=100","competition":"low","remote":true,"note":"Mostly contract gigs; Reddit may block automated requests"},
+ {"id":"workingnomads","name":"Working Nomads","kind":"workingnomads","competition":"medium","remote":true},
+ {"id":"remotive","name":"Remotive","kind":"remotive","competition":"medium","remote":true},
+ {"id":"himalayas","name":"Himalayas","kind":"himalayas","competition":"medium","remote":true},
+ {"id":"jobicy","name":"Jobicy","kind":"jobicy","competition":"medium","remote":true},
+ {"id":"wwr","name":"We Work Remotely (programming)","kind":"rss","url":"https://weworkremotely.com/categories/remote-programming-jobs.rss","competition":"high","remote":true},
+ {"id":"remoteok","name":"RemoteOK","kind":"remoteok","competition":"high","remote":true},
+ {"id":"arbeitnow","name":"Arbeitnow (Germany, visa-friendly)","kind":"arbeitnow","competition":"medium","remote":false},
+ {"id":"japan-dev","name":"Japan Dev","kind":"page","url":"https://japan-dev.com/jobs","competition":"low","remote":false,"note":"Verify page loads as plain HTML"},
+ {"id":"tokyodev","name":"TokyoDev","kind":"page","url":"https://tokyodev.com/jobs","competition":"low","remote":false},
+ {"id":"nodesk","name":"NoDesk remote jobs","kind":"page","url":"https://nodesk.co/remote-jobs/","competition":"low","remote":true},
+ {"id":"remote-co","name":"Remote.co developer jobs","kind":"page","url":"https://remote.co/remote-jobs/developer/","competition":"medium","remote":true}
+]
