@@ -2,9 +2,15 @@ import Anthropic from "@anthropic-ai/sdk"; import type { Job } from "./types.js"
 export const MODEL = process.env.CLAUDE_MODEL ?? "claude-sonnet-5-5";
 export const client = () => new Anthropic();
 
+// Minimum years of experience stated in the text (null if none). Used to drop 3+ year roles before spending tokens.
+export function minYears(t: string): number | null {
+  const m = [...t.toLowerCase().matchAll(/(\d{1,2})\s*(?:\+|-\s*\d{1,2}|to\s*\d{1,2})?\s*(?:years?|yrs?)(?:\s+of)?\s+(?:\w+\s+){0,3}?experience/g)].map(x => +x[1]);
+  return m.length ? Math.min(...m) : null;
+}
 // Cheap keyword gate first so we only spend tokens on plausible jobs.
 export function prefilter(j: Job, p: any): boolean {
   const t = `${j.title} ${j.description}`.toLowerCase();
+  const yrs = minYears(t); if (yrs != null && yrs > (p.filters?.max_years ?? 2)) return false;
   if (p.targets.avoid.some((a: string) => t.includes(a.toLowerCase()))) return false;
   const titleHit = p.targets.titles.some((x: string) => j.title.toLowerCase().includes(x.toLowerCase()));
   const signals = p.targets.must_signals.filter((s: string) => t.includes(s.toLowerCase())).length;

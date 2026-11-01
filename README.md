@@ -53,3 +53,6 @@ Seeds for `npm run discover` (lists of remote-first companies with career pages)
 
 ## Deep requirements and project builder
 `npm run extract` (or "Deep-analyse listings" in Insights) has Claude pull structured requirements out of every ranked job (score 40+): must-haves, nice-to-haves, tech, AI concepts, responsibilities, traits, seniority. Insights then shows every keyword with its count, % of listings, real quotes and the listings behind it, filterable by scope (all / 75+ / remote / low competition) and group. Tick keywords and press "Build a project from these" for a full spec: features, architecture, keyword-to-feature map, day-by-day plan, eval metrics, demo script, README outline and resume bullets. Without extraction, Insights falls back to free word/phrase frequency.
+
+## Targeting filters (profile.yml `filters`)
+`max_years` drops postings that state more years than you have (unstated is kept and even boosted), `max_age_days` drops stale posts, `remote_only` removes visa/relocation routes. Priority also boosts roles with no stated experience, urgent hiring language, and employers in non-English-speaking countries. Roles requiring a local language are always dropped. To compare ~1000 listings: add all sources, `npm run scan && npm run rank && npm run extract`, then open Insights.

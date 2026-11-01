@@ -1,6 +1,6 @@
 import fs from "node:fs"; import type { Job } from "./types.js"; import { profile } from "./profile.js"; import { prefilter } from "./rank.js";
 import * as ats from "./sources/ats.js"; import * as com from "./sources/community.js"; import * as intl from "./sources/intl.js"; import * as more from "./sources/more.js";
-import { normalizeIntl, languageOk, isForeignText, arrangementOk } from "./intl.js"; import { scanCompanies } from "./discover.js";
+import { minYears } from "./rank.js"; import { normalizeIntl, languageOk, isForeignText, arrangementOk } from "./intl.js"; import { scanCompanies } from "./discover.js";
 export interface Src { id: string; name: string; kind: string; url?: string; competition: "low" | "medium" | "high"; remote?: boolean; note?: string; custom?: boolean }
 const rd = (f: string, d: any) => fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : d;
 export const allSources = (): Src[] => [...rd("sources.json", []), ...rd("data/custom-sources.json", []).map((s: Src) => ({ ...s, custom: true }))];
@@ -38,6 +38,7 @@ export async function scan(jobs: Record<string, Job>) {
   const seen = new Set(Object.values(jobs).map(dedupeKey)); let n = 0, dropLang = 0, dropArr = 0;
   for (const b of batches) for (let j of b.jobs) {
     j.competition = b.comp;
+    const maxAge = p.filters?.max_age_days; if (maxAge && j.postedAt && (Date.now() - Date.parse(j.postedAt)) / 864e5 > maxAge) continue; // stale
     if (jobs[j.id] || seen.has(dedupeKey(j))) continue;
     if (isForeignText(j.title + j.description)) { try { j = await normalizeIntl(j); } catch { continue; } if (!languageOk(j)) { dropLang++; continue; } }
     if (!prefilter(j, p)) continue;
@@ -47,7 +48,9 @@ export async function scan(jobs: Record<string, Job>) {
       else if (hint === "no") { dropArr++; continue; }
       else { try { j = await normalizeIntl(j); } catch { continue; } if (!languageOk(j)) { dropLang++; continue; } }
     }
+    if (p.filters?.remote_only && (j.country || j.langRequired) && j.remoteFromIndia !== true) { dropArr++; continue; } // remote only: no visa/relocation route
     if ((j.country || j.langRequired) && !arrangementOk(j)) { dropArr++; continue; }
+    j.minYears = minYears(j.title + " " + j.description);
     j.competition = b.comp; jobs[j.id] = j; seen.add(dedupeKey(j)); n++;
   }
   fs.mkdirSync("data", { recursive: true }); fs.writeFileSync("data/source-stats.json", JSON.stringify(stats, null, 1));

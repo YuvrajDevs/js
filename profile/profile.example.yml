@@ -35,3 +35,7 @@ international:
   boards:           # listing pages; any language, translated automatically (verify each URL opens)
     - https://japan-dev.com/jobs
     - https://tokyodev.com/jobs
+filters:
+  max_years: 2        # drop postings whose text asks for more than this many years (not listed = kept)
+  max_age_days: 21    # drop stale postings
+  remote_only: true   # overseas jobs must be remote and open to India; no visa/relocation route
