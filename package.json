@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "discover": "tsx src/cli.ts discover",
     "scan": "tsx src/cli.ts scan",
     "rank": "tsx src/cli.ts rank",
     "list": "tsx src/cli.ts list",

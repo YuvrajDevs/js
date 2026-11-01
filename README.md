@@ -31,3 +31,10 @@ Set `international` in `profile.yml`. Non-English postings (Japanese etc.) are t
 Arrangement rule: overseas jobs are kept only if remote AND open to India-based workers (tag REMOTE-IN), or if they offer BOTH visa sponsorship and relocation support. On-site-only roles without both are dropped.
 Visa reality check (only matters for the relocation route; remote-from-India needs no visa): Japan's work visa generally needs a bachelor's degree or ~10 years' experience; Germany's Blue Card needs a degree and a salary threshold. Check eligibility before investing in an application.
 Sources are UNVERIFIED from the build sandbox (outbound web was blocked); test each URL on your machine.
+
+## Small-company career pages (how remote roles in Japan etc. are usually found)
+```
+npm run discover -- https://some-startup-directory/japan     # or a text file of domains, one per line
+npm run scan        # probes /careers, /jobs, /recruit, 採用 links and ATS embeds (HERP, HRMOS, Wantedly, Lever...)
+```
+Each company's careers page is hashed; unchanged pages cost nothing on later scans, new postings get translated, filtered (remote-from-India or visa+relocation, no local language) and ranked. Good directory seeds: accelerator portfolios (YC, Antler Japan, etc.), "Japan startup" lists, Product Hunt/Wantedly company lists, X posts like "we're hiring" with a link.
