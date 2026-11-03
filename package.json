@@ -6,6 +6,8 @@
   "scripts": {
     "discover": "tsx src/cli.ts discover",
     "scan": "tsx src/cli.ts scan",
+    "extract": "tsx src/cli.ts extract",
+    "sources": "tsx src/cli.ts sources",
     "rank": "tsx src/cli.ts rank",
     "list": "tsx src/cli.ts list",
     "tailor": "tsx src/cli.ts tailor",
